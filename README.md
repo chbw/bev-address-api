@@ -2,6 +2,9 @@
 
 This is a proof of concept API to the address data of the BEV (Bundesamt für Eich- und Vermessungswesen).
 
+![Map Screenshot](map-screenshot.png)
+
+
 ## Getting Started
 
 Create a python virtual environment and activate it.
