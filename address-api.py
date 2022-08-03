@@ -1,5 +1,4 @@
-import re
-from flask import Flask, render_template, send_from_directory, request, Response, jsonify
+from flask import Flask, render_template, request, jsonify
 import sqlite3
 from pyproj import CRS, Transformer
 
