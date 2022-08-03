@@ -4,6 +4,7 @@ import requests
 import zipfile
 import pandas
 from os.path import exists
+from os import remove
 
 url = 'https://www.bev.gv.at/pls/portal/docs/PAGE/BEV_PORTAL_CONTENT_ALLGEMEIN/0200_PRODUKTE/UNENTGELTLICHE_PRODUKTE_DES_BEV/Adresse-Relationale_Tabellen_Stichtagsdaten_03042022.zip'
 sha256sum = 'd1c842020b0a703a1b5f559c2037f020d63cde6485287fddea427839f072bd30'
@@ -42,6 +43,9 @@ except:
     exit
 
 print('import data to sqlite database')
+
+if(exists('data.db')):
+    remove('data.db')
 
 con = sqlite3.connect('file:data.db', uri=True)
 
