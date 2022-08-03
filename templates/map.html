@@ -37,10 +37,10 @@
         overview.zoomControl = false
 
         var tiles = L.tileLayer('http://maps.wien.gv.at/basemap/geolandbasemap/normal/google3857/{z}/{y}/{x}.png', {
-            attribution: 'Tiles &copy; <a href="https://basemap.at">basemap.at</a>'
+            attribution: '&copy; <a href="https://basemap.at">basemap.at</a>'
         }).addTo(map);
         var tiles = L.tileLayer('http://maps.wien.gv.at/basemap/geolandbasemap/normal/google3857/{z}/{y}/{x}.png', {
-            attribution: 'Tiles &copy; <a href="https://basemap.at">basemap.at</a>'
+            attribution: '&copy; <a href="https://basemap.at">basemap.at</a>'
         }).addTo(overview);
 
         var popup = L.popup()
@@ -87,6 +87,8 @@
             }
             map.setView(data[0].epsg4326)
             overview.setView(data[0].epsg4326)
+            map.attributionControl.addAttribution("© Österreichisches Adressregister, Stichtagsdaten vom 03.04.2022")
+            overview.attributionControl.addAttribution("© Österreichisches Adressregister, Stichtagsdaten vom 03.04.2022")
         })
 
     </script>
