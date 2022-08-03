@@ -31,8 +31,9 @@
     <div id="map" style="width: 600px; height: 400px;"></div>
 
     <script>
-        var map = L.map('map', { zoomControl: false, crs: L.CRS.EPSG3857 }).setView([47.207, 15.564], 17);
-        var overview = L.map('overview', { zoomControl: false }).setView([47.21, 15.56], 14)
+        var default_loc = [47.076, 15.443] // graz
+        var map = L.map('map', { zoomControl: false, crs: L.CRS.EPSG3857 }).setView(default_loc, 17);
+        var overview = L.map('overview', { zoomControl: false }).setView(default_loc, 14)
         overview.zoomControl = false
 
         var tiles = L.tileLayer('http://maps.wien.gv.at/basemap/geolandbasemap/normal/google3857/{z}/{y}/{x}.png', {
