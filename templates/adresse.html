@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+
+<body>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ADRCD</th>
+                <th>GKZ</th>
+                <th>OKZ</th>
+                <th>SKZ</th>
+                <th>PLZ</th>
+                <th>ZUSTELLORT</th>
+                <th>ZUSTELLORT_ID</th>
+                <th>GEMEINDENAME</th>
+                <th>ORTSNAME</th>
+                <th>STRASSENNAME</th>
+                <th>STRASSENNAMENZUSATZ</th>
+                <th>SZUSADRBEST</th>
+                <th>HNR_ADR_ZUSAMMEN</th>
+                <th>EPSG</th>
+                <th>RW</th>
+                <th>HW</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in rows %}
+            <tr>
+                <td>{{row["ADRCD"]}}</td>
+                <td>{{row['GKZ']}}</td>
+                <td>{{row['OKZ']}}</td>
+                <td>{{row["SKZ"]}}</td>
+                <td>{{row['PLZ']}}</td>
+                <td>{{row['ZUSTELLORT']}}</td>
+                <td>{{row['ZUSTELLORT_ID']}}</td>
+                <td>{{row['GEMEINDENAME']}}</td>
+                <td>{{row['ORTSNAME']}}</td>
+                <td>{{row['STRASSENNAME']}}</td>
+                <td>{{row['STRASSENNAMENZUSATZ']}}</td>
+                <td>{{row['SZUSADRBEST']}}</td>
+                <td>{{row['HNR_ADR_ZUSAMMEN']}}</td>
+                <td>{{row['EPSG']}}</td>
+                <td>{{row['RW']}}</td>
+                <td>{{row['HW']}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="/">Go back to home page</a>
+</body>
+
+</html>

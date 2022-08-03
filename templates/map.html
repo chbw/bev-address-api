@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
+        integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
+        crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
+        integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
+        crossorigin=""></script>
+
+    <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+        }
+
+        .leaflet-container {
+            height: 400px;
+            width: 600px;
+            max-width: 100%;
+            max-height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="overview" style="width: 600px; height: 400px;"></div>
+    <div id="map" style="width: 600px; height: 400px;"></div>
+
+    <script>
+        var map = L.map('map', { zoomControl: false, crs: L.CRS.EPSG3857 }).setView([47.207, 15.564], 17);
+        var overview = L.map('overview', { zoomControl: false }).setView([47.21, 15.56], 14)
+        overview.zoomControl = false
+
+        var tiles = L.tileLayer('http://maps.wien.gv.at/basemap/geolandbasemap/normal/google3857/{z}/{y}/{x}.png', {
+            attribution: 'Tiles &copy; <a href="https://basemap.at">basemap.at</a>'
+        }).addTo(map);
+        var tiles = L.tileLayer('http://maps.wien.gv.at/basemap/geolandbasemap/normal/google3857/{z}/{y}/{x}.png', {
+            attribution: 'Tiles &copy; <a href="https://basemap.at">basemap.at</a>'
+        }).addTo(overview);
+
+        var popup = L.popup()
+
+        function onMapClick(e) {
+            popup
+                .setLatLng(e.latlng)
+                .setContent('You clicked the map at ' + e.latlng.toString())
+                .openOn(map);
+        }
+
+        let moving = false
+        function onMoveEndMap(e) {
+            if(!moving) {
+                moving = true
+                overview.setView(map.getCenter())
+                moving = false
+            }
+        }
+
+        function onMoveEndOverview(e) {
+            if(!moving) {
+                moving = true
+                map.setView(overview.getCenter())
+                moving = false
+            }
+        }
+
+        map.on('click', onMapClick);
+
+        map.on('moveend', onMoveEndMap)
+        overview.on('moveend', onMoveEndOverview)
+
+        fetch(window.location.pathname + '?json')
+        .then(response => {
+            if(response.ok){
+                return response.json();
+            }
+        })
+        .then(data => {
+            for(let i in data){
+                L.marker(data[i].epsg4326).addTo(map)
+                L.marker(data[i].epsg4326).addTo(overview)
+            }
+            map.setView(data[0].epsg4326)
+            overview.setView(data[0].epsg4326)
+        })
+
+    </script>
+</body>
+
+</html>
