@@ -1,12 +1,13 @@
 from flask import Flask, render_template, request, jsonify
 import sqlite3
 from pyproj import CRS, Transformer
+import html
 
 app = Flask(__name__, static_url_path='')
 
 @app.route('/')
 def hello_world():
-    return 'use the following path (SQL wildcards like % are supported, add ?map for a map, or ?json for json): /ADRESSE/<zustellort>/<strassenname>/<hnr>'
+    return html.escape('use the following path (SQL wildcards like % are supported, add ?map for a map, or ?json for json): /ADRESSE/<zustellort>/<strassenname>/<hnr>')
 
 @app.route('/ADRESSE/<zustellort>/<strassenname>/<hnr>')
 def ADRESSE(zustellort='', strassenname='', hnr=''):
