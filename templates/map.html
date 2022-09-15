@@ -81,12 +81,16 @@
             }
         })
         .then(data => {
-            for(let i in data){
-                L.marker(data[i].epsg4326).addTo(map)
-                L.marker(data[i].epsg4326).addTo(overview)
-            }
-            map.setView(data[0].epsg4326)
             overview.setView(data[0].epsg4326)
+            let bounds = overview.getBounds()
+            for(let i in data){
+                let latlon = data[i].epsg4326
+                L.marker(latlon).addTo(map)
+                L.marker(latlon).addTo(overview)
+                bounds.extend(latlon)
+            }
+            overview.fitBounds(bounds)
+            map.setView(overview.getCenter())
             map.attributionControl.addAttribution("© Österreichisches Adressregister, Stichtagsdaten vom 03.04.2022")
             overview.attributionControl.addAttribution("© Österreichisches Adressregister, Stichtagsdaten vom 03.04.2022")
         })
