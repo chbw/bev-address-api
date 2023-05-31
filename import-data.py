@@ -6,8 +6,8 @@ import pandas
 from os.path import exists
 from os import remove
 
-url = 'https://www.bev.gv.at/pls/portal/docs/PAGE/BEV_PORTAL_CONTENT_ALLGEMEIN/0200_PRODUKTE/UNENTGELTLICHE_PRODUKTE_DES_BEV/Adresse-Relationale_Tabellen_Stichtagsdaten_03042022.zip'
-sha256sum = 'd1c842020b0a703a1b5f559c2037f020d63cde6485287fddea427839f072bd30'
+url = 'https://data.bev.gv.at/download/Adressregister/Adresse_Relationale_Tabellen_Stichtagsdaten_20230415.zip'
+sha256sum = '6e6d93c48f10a08bb619ed035a628843123f59b02779f2dbfae35712a7eeda4e'
 zip_file = 'data.zip'
 data_dir = "data"
 
